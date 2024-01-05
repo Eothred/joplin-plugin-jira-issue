@@ -103,7 +103,9 @@ export class View {
     renderIssue(issue: any): string {
         // console.log('renderIssue', issue, this._settings)
         const htmlTemplate = Templater(Templates.issue)
-        return htmlTemplate(getIssueProperties(issue, this._settings))
+        const issueProperties = getIssueProperties(issue, this._settings);
+        // console.log('getIssueProperties', issueProperties);
+        return htmlTemplate(issueProperties)
     }
 
     renderError(query: string, error: string): string {
@@ -162,8 +164,8 @@ const Templates = {
                 <span class="tag tag-medium-gray outline" title="Progress: {{progress}}">%: {{progress}}</span>
                 {{/if}}
                 {{#if (dueDate)}}
-                <span class="tag tag-medium-gray outline" title="Due date: {{dueDate}}">DD:
-                    {{dueDate}}</span>
+                <span class="tag tag-medium-gray outline" title="Due date: {{dueDate.date}}">DD:
+                    {{dueDate.date}}</span>
                 {{/if}}
             </div>
         </details>
